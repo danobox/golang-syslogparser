@@ -2,7 +2,7 @@ package rfc3164
 
 import (
 	"bytes"
-	"github.com/jeromer/syslogparser"
+	"github.com/nanobox-io/golang-syslogparser"
 	"time"
 )
 
@@ -181,7 +181,6 @@ func (p *Parser) parseHostname() (string, error) {
 func (p *Parser) parseTag() (string, error) {
 	var b byte
 	var endOfTag bool
-	var bracketOpen bool
 	var tag []byte
 	var err error
 	var found bool
@@ -190,14 +189,7 @@ func (p *Parser) parseTag() (string, error) {
 
 	for {
 		b = p.buff[p.cursor]
-		bracketOpen = (b == '[')
 		endOfTag = (b == ':' || b == ' ')
-
-		// XXX : parse PID ?
-		if bracketOpen {
-			tag = p.buff[from:p.cursor]
-			found = true
-		}
 
 		if endOfTag {
 			if !found {

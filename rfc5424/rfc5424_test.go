@@ -2,7 +2,7 @@ package rfc5424
 
 import (
 	"fmt"
-	"github.com/jeromer/syslogparser"
+	"github.com/nanobox-io/golang-syslogparser"
 	. "launchpad.net/gocheck"
 	"testing"
 	"time"
